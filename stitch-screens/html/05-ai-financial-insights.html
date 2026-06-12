@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Geist:wght@400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed-variant": "#005236",
+                        "secondary-container": "#0566d9",
+                        "on-tertiary-fixed": "#131b2e",
+                        "secondary-fixed-dim": "#adc6ff",
+                        "surface-variant": "#2f3632",
+                        "dark-slate": "#0F172A",
+                        "primary-fixed-dim": "#4edea3",
+                        "surface-container": "#1a211d",
+                        "outline-variant": "#3c4a42",
+                        "tertiary": "#bec6e0",
+                        "on-tertiary-container": "#31394d",
+                        "on-background": "#dde4dd",
+                        "inverse-primary": "#006c49",
+                        "mint-accent": "#D1FAE5",
+                        "surface-container-high": "#242c27",
+                        "outline": "#86948a",
+                        "surface-container-low": "#161d19",
+                        "secondary-fixed": "#d8e2ff",
+                        "primary-fixed": "#6ffbbe",
+                        "chart-info": "#3B82F6",
+                        "surface-bright": "#343b36",
+                        "on-primary": "#003824",
+                        "on-tertiary": "#283044",
+                        "emerald-glow": "#10B981",
+                        "tertiary-container": "#9ba2bb",
+                        "error-container": "#93000a",
+                        "on-primary-fixed": "#002113",
+                        "on-secondary": "#002e6a",
+                        "surface-container-lowest": "#09100c",
+                        "on-surface": "#dde4dd",
+                        "surface": "#0e1511",
+                        "error": "#ffb4ab",
+                        "on-error-container": "#ffdad6",
+                        "chart-success": "#10B981",
+                        "on-tertiary-fixed-variant": "#3f465c",
+                        "primary": "#4edea3",
+                        "on-secondary-container": "#e6ecff",
+                        "glass-border": "rgba(255, 255, 255, 0.08)",
+                        "tertiary-fixed-dim": "#bec6e0",
+                        "deep-navy": "#020617",
+                        "on-primary-container": "#00422b",
+                        "inverse-on-surface": "#2b322d",
+                        "on-error": "#690005",
+                        "primary-container": "#10b981",
+                        "on-surface-variant": "#bbcabf",
+                        "on-secondary-fixed-variant": "#004395",
+                        "surface-container-highest": "#2f3632",
+                        "electric-blue": "#3B82F6",
+                        "tertiary-fixed": "#dae2fd",
+                        "secondary": "#adc6ff",
+                        "surface-tint": "#4edea3",
+                        "inverse-surface": "#dde4dd",
+                        "chart-warning": "#F59E0B",
+                        "background": "#0e1511",
+                        "surface-dim": "#0e1511",
+                        "on-secondary-fixed": "#001a42"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-max": "1200px",
+                        "section-padding": "80px",
+                        "unit": "8px",
+                        "gutter": "24px",
+                        "margin-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Inter"],
+                        "body-md": ["Inter"],
+                        "chart-value": ["Geist"],
+                        "headline-lg": ["Inter"],
+                        "label-mono": ["Geist"],
+                        "display-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400"}],
+                        "chart-value": ["14px", {"lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "label-mono": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "display-lg": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.04em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-top: 1px solid rgba(255, 255, 255, 0.12);
+        }
+        .emerald-glow-bg {
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.15);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #0e1511;
+            color: #dde4dd;
+            overflow-x: hidden;
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md">
+<!-- Sidebar Navigation -->
+<aside class="fixed left-0 top-0 h-screen flex flex-col h-full w-64 border-r bg-surface-container/40 backdrop-blur-md glass-border border-r z-50">
+<div class="p-gutter">
+<h1 class="font-headline-lg text-headline-lg text-primary">Voxel Pro</h1>
+<p class="font-label-mono text-label-mono text-on-surface-variant">Premium Tier</p>
+</div>
+<nav class="flex-1 px-4 space-y-2 mt-4">
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-white/5 transition-all hover:translate-x-1 duration-200 font-label-mono text-label-mono" href="#">
+<span class="material-symbols-outlined">dashboard</span> Dashboard
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-white/5 transition-all hover:translate-x-1 duration-200 font-label-mono text-label-mono" href="#">
+<span class="material-symbols-outlined">track_changes</span> Goals
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-white/5 transition-all hover:translate-x-1 duration-200 font-label-mono text-label-mono" href="#">
+<span class="material-symbols-outlined">receipt_long</span> Expenses
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-white/5 transition-all hover:translate-x-1 duration-200 font-label-mono text-label-mono" href="#">
+<span class="material-symbols-outlined">account_balance_wallet</span> Budget
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-white/5 transition-all hover:translate-x-1 duration-200 font-label-mono text-label-mono" href="#">
+<span class="material-symbols-outlined">insights</span> Analytics
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-primary border-r-4 border-primary bg-primary/10 transition-all hover:translate-x-1 duration-200 font-label-mono text-label-mono" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">psychology</span> AI Insights
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-white/5 transition-all hover:translate-x-1 duration-200 font-label-mono text-label-mono" href="#">
+<span class="material-symbols-outlined">person</span> Profile
+            </a>
+</nav>
+<div class="p-gutter mt-auto">
+<button class="w-full py-3 px-4 rounded-xl bg-primary text-on-primary font-label-mono text-label-mono font-bold scale-98 active:scale-95 transition-transform emerald-glow-bg">
+                Upgrade to Ultra
+            </button>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="ml-64 min-h-screen pb-section-padding relative">
+<!-- Atmospheric Background Shaders -->
+<div class="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
+
+</div>
+<div class="max-w-container-max mx-auto px-gutter pt-12">
+<!-- Header Section -->
+<header class="mb-12">
+<div class="flex items-center gap-4 mb-2">
+<span class="font-label-mono text-label-mono text-primary px-3 py-1 rounded-full bg-primary/10 border border-primary/20">SYSTEM ACTIVE</span>
+<span class="text-on-surface-variant font-label-mono text-label-mono">Last processed: 2 mins ago</span>
+</div>
+<h2 class="font-display-lg text-display-lg tracking-tighter text-on-surface">AI Insights</h2>
+<p class="text-on-surface-variant max-w-xl mt-4 font-body-md text-body-md">
+                    Leveraging neural processing to decode your financial footprint. Precision analysis for the modern capital manager.
+                </p>
+</header>
+<!-- Grid Layout -->
+<div class="grid grid-cols-12 gap-gutter">
+<!-- Monthly Summary Card (Large) -->
+<section class="col-span-12 lg:col-span-8 glass-card rounded-xl p-gutter relative overflow-hidden">
+<div class="absolute top-0 right-0 p-6 opacity-20">
+<span class="material-symbols-outlined text-6xl">analytics</span>
+</div>
+<div class="relative z-10">
+<h3 class="font-label-mono text-label-mono text-on-surface-variant uppercase mb-6 tracking-widest">Monthly Financial Summary</h3>
+<div class="flex flex-wrap items-end gap-12">
+<div>
+<p class="font-label-mono text-label-mono text-on-surface-variant mb-1">Total Outflow</p>
+<p class="font-chart-value text-4xl text-on-surface">₹1,42,850.00</p>
+</div>
+<div class="pb-1">
+<span class="flex items-center text-error font-label-mono text-label-mono">
+<span class="material-symbols-outlined text-sm mr-1">trending_up</span> +12.4% vs Last Month
+                                </span>
+</div>
+</div>
+<div class="mt-8 h-48 w-full">
+<img class="w-full h-full object-cover rounded-lg opacity-80" data-alt="A sophisticated data visualization area chart showing spending trends over thirty days. The chart features a vibrant emerald green gradient fill that fades into transparency against a deep slate background. Fine grid lines at five percent opacity provide a technical structure while the line itself glows with a subtle electric neon intensity, embodying high-precision fintech aesthetics." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCgRfO9HnCbZbnOu9uCgX3q_DppwQEYOUUwY9ZtqmbIxwwvr5kVuCDxVRLwbJdNrOaH7pE3i7_zyssTdJHliWthh3jS2r6p10HmniETHuD4JbCu9JQPRrwDsC7WmnUzELY7FRSIVFNzUHPOj0dJF2MFu6geQBOGBa3VuOjRw9gwDr52dXw3-uLNp69ccWvRfPJT-Pkdc1lt3XvlojbE9Zi02F95gRsm-56BePD7pIQByBCU8KcGcYZo49_hUi2IohA80C5kxiLn_Ng"/>
+</div>
+</div>
+</section>
+<!-- Spending Pattern Card -->
+<section class="col-span-12 lg:col-span-4 glass-card rounded-xl p-gutter flex flex-col justify-between">
+<div>
+<h3 class="font-label-mono text-label-mono text-on-surface-variant uppercase mb-6 tracking-widest">Pattern Analysis</h3>
+<div class="space-y-6">
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">restaurant</span>
+</div>
+<div>
+<p class="font-body-md text-on-surface">You spent 25% more on food this month.</p>
+<p class="font-label-mono text-label-mono text-on-surface-variant mt-1">Frequent visits to "The Bistro"</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 rounded-lg bg-secondary/10 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined">bolt</span>
+</div>
+<div>
+<p class="font-body-md text-on-surface">Utility optimization potential detected.</p>
+<p class="font-label-mono text-label-mono text-on-surface-variant mt-1">Subscription overlap found in SaaS category</p>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-8 pt-6 border-t border-white/5">
+<button class="text-primary font-label-mono text-label-mono flex items-center gap-2 hover:translate-x-1 transition-transform">
+                            View detailed patterns <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</section>
+<!-- Saving Suggestions (Bento Style) -->
+<section class="col-span-12 lg:col-span-5 glass-card rounded-xl p-gutter bg-emerald-glow/5 border-primary/20">
+<div class="flex items-center gap-2 mb-6">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">lightbulb</span>
+<h3 class="font-label-mono text-label-mono text-primary uppercase tracking-widest">Smart Saving Suggestions</h3>
+</div>
+<p class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface leading-tight">
+                        "Reducing online shopping by ₹1,000 can help you reach your laptop goal 2 months earlier."
+                    </p>
+<div class="mt-8 p-4 rounded-xl bg-surface/50 border border-white/5 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-primary animate-pulse"></div>
+<span class="font-label-mono text-label-mono">Impact: High</span>
+</div>
+<button class="font-label-mono text-label-mono bg-primary/20 text-primary px-4 py-2 rounded-lg hover:bg-primary/30 transition-colors">Apply Strategy</button>
+</div>
+</section>
+<!-- Goal Achievements Prediction -->
+<section class="col-span-12 lg:col-span-7 glass-card rounded-xl p-gutter">
+<h3 class="font-label-mono text-label-mono text-on-surface-variant uppercase mb-6 tracking-widest">Goal Trajectories</h3>
+<div class="space-y-8">
+<div>
+<div class="flex justify-between items-end mb-2">
+<p class="font-body-md font-semibold">New MacBook Pro</p>
+<p class="font-label-mono text-label-mono text-primary">On Track: Oct 2024</p>
+</div>
+<div class="w-full h-1.5 bg-white/5 rounded-full overflow-hidden">
+<div class="h-full bg-primary emerald-glow-bg rounded-full" style="width: 65%"></div>
+</div>
+<p class="font-label-mono text-label-mono text-on-surface-variant mt-2">Neural prediction: 94% confidence</p>
+</div>
+<div>
+<div class="flex justify-between items-end mb-2">
+<p class="font-body-md font-semibold">Europe Trip 2025</p>
+<p class="font-label-mono text-label-mono text-secondary">Delayed: +3 Weeks</p>
+</div>
+<div class="w-full h-1.5 bg-white/5 rounded-full overflow-hidden">
+<div class="h-full bg-secondary rounded-full" style="width: 22%"></div>
+</div>
+<p class="font-label-mono text-label-mono text-on-surface-variant mt-2">Adjusted for current inflation trends</p>
+</div>
+</div>
+</section>
+<!-- Budget Recommendations -->
+<section class="col-span-12 glass-card rounded-xl p-gutter">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+<h3 class="font-label-mono text-label-mono text-on-surface-variant uppercase tracking-widest">Adaptive Budget Recommendations</h3>
+<div class="flex gap-2">
+<span class="px-3 py-1 rounded-lg bg-surface-container-high border border-white/5 font-label-mono text-label-mono">Conservative</span>
+<span class="px-3 py-1 rounded-lg bg-primary text-on-primary font-label-mono text-label-mono">Balanced</span>
+<span class="px-3 py-1 rounded-lg bg-surface-container-high border border-white/5 font-label-mono text-label-mono">Aggressive</span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+<div class="p-6 rounded-xl bg-white/[0.02] border border-white/5">
+<p class="font-label-mono text-label-mono text-on-surface-variant mb-2">Housing</p>
+<p class="font-chart-value text-2xl">₹45,000</p>
+<div class="mt-4 flex items-center gap-2 text-chart-success font-label-mono text-label-mono">
+<span class="material-symbols-outlined text-sm">check_circle</span> Optimized
+                            </div>
+</div>
+<div class="p-6 rounded-xl bg-white/[0.02] border border-white/5">
+<p class="font-label-mono text-label-mono text-on-surface-variant mb-2">Investment</p>
+<p class="font-chart-value text-2xl">₹30,000</p>
+<div class="mt-4 flex items-center gap-2 text-primary font-label-mono text-label-mono">
+<span class="material-symbols-outlined text-sm">arrow_upward</span> Recommend +15%
+                            </div>
+</div>
+<div class="p-6 rounded-xl bg-white/[0.02] border border-white/5">
+<p class="font-label-mono text-label-mono text-on-surface-variant mb-2">Lifestyle</p>
+<p class="font-chart-value text-2xl">₹12,500</p>
+<div class="mt-4 flex items-center gap-2 text-error font-label-mono text-label-mono">
+<span class="material-symbols-outlined text-sm">warning</span> Limit reached
+                            </div>
+</div>
+<div class="p-6 rounded-xl bg-white/[0.02] border border-white/5">
+<p class="font-label-mono text-label-mono text-on-surface-variant mb-2">Buffer</p>
+<p class="font-chart-value text-2xl">₹5,000</p>
+<div class="mt-4 flex items-center gap-2 text-on-surface-variant font-label-mono text-label-mono">
+<span class="material-symbols-outlined text-sm">info</span> Dynamic Reserve
+                            </div>
+</div>
+</div>
+</section>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="ml-64 w-full mt-auto px-gutter max-w-[1200px] mx-auto flex flex-col md:flex-row justify-between items-center py-section-padding glass-border border-t bg-surface-container-lowest/80 backdrop-blur-lg">
+<div>
+<h4 class="font-headline-lg text-headline-lg text-primary mb-2">Voxel Finance</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">© 2024 Voxel Finance. Precision Engineered.</p>
+</div>
+<div class="flex flex-wrap gap-8 mt-8 md:mt-0">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-emerald-glow transition-colors duration-300 opacity-80 hover:opacity-100" href="#">Privacy Policy</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-emerald-glow transition-colors duration-300 opacity-80 hover:opacity-100" href="#">Terms of Service</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-emerald-glow transition-colors duration-300 opacity-80 hover:opacity-100" href="#">Security</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-emerald-glow transition-colors duration-300 opacity-80 hover:opacity-100" href="#">API Documentation</a>
+</div>
+</footer>
+<script>
+        // Micro-interactions for glass cards
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+                
+                // Subtle shine effect logic could be added here
+            });
+            
+            card.addEventListener('mousedown', () => {
+                card.style.transform = 'scale(0.98)';
+            });
+            
+            card.addEventListener('mouseup', () => {
+                card.style.transform = 'scale(1)';
+            });
+        });
+
+        // Initialize any necessary visual state
+        console.log("Voxel AI Insights Engine Initialized...");
+    </script>
+</body></html>

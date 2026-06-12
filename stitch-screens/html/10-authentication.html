@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Voxel Finance | Authentication</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Geist:wght@400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        .glass-card {
+            background: rgba(14, 21, 17, 0.4);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 40px rgba(16, 185, 129, 0.05);
+        }
+
+        .input-glow:focus-within {
+            border-color: #3B82F6;
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.2);
+        }
+
+        .emerald-button-glow {
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .shimmer-effect {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .shimmer-effect::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+            transform: translateX(-100%);
+            transition: 0.5s;
+        }
+
+        .shimmer-effect:hover::after {
+            animation: shimmer 1.5s infinite;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hidden-flow {
+            display: none;
+            opacity: 0;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-primary-fixed-variant": "#005236",
+                      "secondary-container": "#0566d9",
+                      "on-tertiary-fixed": "#131b2e",
+                      "secondary-fixed-dim": "#adc6ff",
+                      "surface-variant": "#2f3632",
+                      "dark-slate": "#0F172A",
+                      "primary-fixed-dim": "#4edea3",
+                      "surface-container": "#1a211d",
+                      "outline-variant": "#3c4a42",
+                      "tertiary": "#bec6e0",
+                      "on-tertiary-container": "#31394d",
+                      "on-background": "#dde4dd",
+                      "inverse-primary": "#006c49",
+                      "mint-accent": "#D1FAE5",
+                      "surface-container-high": "#242c27",
+                      "outline": "#86948a",
+                      "surface-container-low": "#161d19",
+                      "secondary-fixed": "#d8e2ff",
+                      "primary-fixed": "#6ffbbe",
+                      "chart-info": "#3B82F6",
+                      "surface-bright": "#343b36",
+                      "on-primary": "#003824",
+                      "on-tertiary": "#283044",
+                      "emerald-glow": "#10B981",
+                      "tertiary-container": "#9ba2bb",
+                      "error-container": "#93000a",
+                      "on-primary-fixed": "#002113",
+                      "on-secondary": "#002e6a",
+                      "surface-container-lowest": "#09100c",
+                      "on-surface": "#dde4dd",
+                      "surface": "#0e1511",
+                      "error": "#ffb4ab",
+                      "on-error-container": "#ffdad6",
+                      "chart-success": "#10B981",
+                      "on-tertiary-fixed-variant": "#3f465c",
+                      "primary": "#4edea3",
+                      "on-secondary-container": "#e6ecff",
+                      "glass-border": "rgba(255, 255, 255, 0.08)",
+                      "tertiary-fixed-dim": "#bec6e0",
+                      "deep-navy": "#020617",
+                      "on-primary-container": "#00422b",
+                      "inverse-on-surface": "#2b322d",
+                      "on-error": "#690005",
+                      "primary-container": "#10b981",
+                      "on-surface-variant": "#bbcabf",
+                      "on-secondary-fixed-variant": "#004395",
+                      "surface-container-highest": "#2f3632",
+                      "electric-blue": "#3B82F6",
+                      "tertiary-fixed": "#dae2fd",
+                      "secondary": "#adc6ff",
+                      "surface-tint": "#4edea3",
+                      "inverse-surface": "#dde4dd",
+                      "chart-warning": "#F59E0B",
+                      "background": "#0e1511",
+                      "surface-dim": "#0e1511",
+                      "on-secondary-fixed": "#001a42"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "container-max": "1200px",
+                      "section-padding": "80px",
+                      "unit": "8px",
+                      "gutter": "24px",
+                      "margin-mobile": "16px"
+              },
+              "fontFamily": {
+                      "headline-lg-mobile": ["Inter"],
+                      "body-md": ["Inter"],
+                      "chart-value": ["Geist"],
+                      "headline-lg": ["Inter"],
+                      "label-mono": ["Geist"],
+                      "display-lg": ["Inter"]
+              },
+              "fontSize": {
+                      "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400"}],
+                      "chart-value": ["14px", {"lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "600"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                      "label-mono": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                      "display-lg": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.04em", "fontWeight": "700"}]
+              }
+            },
+          },
+        }
+      </script>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen relative flex items-center justify-center overflow-hidden">
+<!-- Hero Animation Background -->
+<!-- STITCH_SHADER_START:ANIMATION_3 class="absolute inset-0 w-full h-full z-0 opacity-50" -->
+<div class="absolute inset-0 w-full h-full z-0 opacity-50" style="display:block;">
+<canvas id="shader-canvas-ANIMATION_3" style="display:block;width:100%;height:100%"></canvas>
+<script>
+(function() {
+  const canvas = document.getElementById('shader-canvas-ANIMATION_3');
+
+  // Sync the WebGL drawing-buffer size with the CSS-driven layout size.
+  // This fires on initial layout and whenever the element is resized.
+  function syncSize() {
+    const w = canvas.clientWidth  || 1280;
+    const h = canvas.clientHeight || 720;
+    if (canvas.width !== w || canvas.height !== h) {
+      canvas.width  = w;
+      canvas.height = h;
+    }
+  }
+  if (typeof ResizeObserver !== 'undefined') {
+    new ResizeObserver(syncSize).observe(canvas);
+  }
+  syncSize();
+
+  const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  if (!gl) return;
+  const vs = `attribute vec2 a_position;
+varying vec2 v_texCoord;
+void main() {
+  v_texCoord = a_position * 0.5 + 0.5;
+  gl_Position = vec4(a_position, 0.0, 1.0);
+}`;
+  const fs = `precision highp float;
+varying vec2 v_texCoord;
+uniform float u_time;
+uniform vec2 u_resolution;
+
+void main() {
+    vec2 uv = v_texCoord;
+    float time = u_time * 0.2;
+    
+    // Create organic flowing movement
+    float noise = sin(uv.x * 3.0 + time) * cos(uv.y * 2.0 - time) * 0.5 + 0.5;
+    float noise2 = sin(uv.y * 4.0 - time * 0.8) * cos(uv.x * 3.0 + time * 1.2) * 0.5 + 0.5;
+    
+    // Deep Finance Navy
+    vec3 color1 = vec3(0.055, 0.082, 0.067); // Surface-low
+    // Emerald Accent
+    vec3 color2 = vec3(0.063, 0.725, 0.506); // Primary
+    // Electric Blue Accent
+    vec3 color3 = vec3(0.0, 0.4, 0.9);
+    
+    float mixFactor = smoothstep(0.3, 0.7, noise * noise2 + uv.y * 0.2);
+    vec3 finalColor = mix(color1, color2 * 0.15, mixFactor);
+    finalColor = mix(finalColor, color3 * 0.1, smoothstep(0.8, 1.0, noise2) * 0.5);
+    
+    // Add subtle grain/shimmer
+    float grain = fract(sin(dot(uv, vec2(12.9898, 78.233))) * 43758.5453);
+    finalColor += grain * 0.02;
+
+    gl_FragColor = vec4(finalColor, 1.0);
+}`;
+  function cs(type, src) {
+    const s = gl.createShader(type);
+    gl.shaderSource(s, src);
+    gl.compileShader(s);
+    return s;
+  }
+  const prog = gl.createProgram();
+  gl.attachShader(prog, cs(gl.VERTEX_SHADER, vs));
+  gl.attachShader(prog, cs(gl.FRAGMENT_SHADER, fs));
+  gl.linkProgram(prog);
+  gl.useProgram(prog);
+  const buf = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
+  const pos = gl.getAttribLocation(prog, 'a_position');
+  gl.enableVertexAttribArray(pos);
+  gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
+  const uTime = gl.getUniformLocation(prog, 'u_time');
+  const uRes = gl.getUniformLocation(prog, 'u_resolution');
+  const uMouse = gl.getUniformLocation(prog, 'u_mouse');
+
+  // u_mouse is in pixel coordinates matching u_resolution (ShaderToy convention).
+  // Shaders that need normalized coords should use: u_mouse / u_resolution.
+  let mouse = { x: canvas.width / 2, y: canvas.height / 2 };
+  window.addEventListener('mousemove', (event) => {
+    const rect = canvas.getBoundingClientRect();
+    if (rect.width && rect.height) {
+      const nx = (event.clientX - rect.left) / rect.width;
+      const ny = 1.0 - (event.clientY - rect.top) / rect.height;
+      mouse.x = nx * canvas.width;
+      mouse.y = ny * canvas.height;
+    }
+  });
+
+  function render(t) {
+    if (typeof ResizeObserver === 'undefined') syncSize();
+    gl.viewport(0, 0, canvas.width, canvas.height);
+    if (uTime) gl.uniform1f(uTime, t * 0.001);
+    if (uRes) gl.uniform2f(uRes, canvas.width, canvas.height);
+    if (uMouse) gl.uniform2f(uMouse, mouse.x, mouse.y);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+    requestAnimationFrame(render);
+  }
+  render(0);
+})();
+</script>
+</div>
+<!-- STITCH_SHADER_END:ANIMATION_3 -->
+<!-- Content Container -->
+<main class="relative z-10 w-full max-w-[440px] px-margin-mobile md:px-0">
+<!-- Login Card -->
+<section class="glass-card rounded-xl p-gutter md:p-10 fade-in" id="login-flow">
+<header class="text-center mb-8">
+<div class="mb-4 inline-flex items-center justify-center">
+<span class="font-display-lg text-headline-lg tracking-tighter text-primary">Voxel Finance</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Welcome back</h1>
+<p class="text-on-surface-variant font-body-md mt-2">Enter your credentials to access your dashboard.</p>
+</header>
+<form class="space-y-4" onsubmit="return false;">
+<!-- Social Login -->
+<button class="w-full flex items-center justify-center gap-3 bg-surface-container-high border border-glass-border rounded-lg py-3 px-4 font-label-mono text-label-mono text-on-surface shimmer-effect transition-all active:scale-95" type="button">
+<svg class="w-5 h-5" viewbox="0 0 24 24">
+<path d="M12.48 10.92v3.28h7.84c-.24 1.84-.9 3.32-2.06 4.44-1.14 1.12-2.92 2.04-5.78 2.04-4.62 0-8.4-3.74-8.4-8.36s3.78-8.36 8.4-8.36c2.48 0 4.28.98 5.6 2.26l2.32-2.32C18.42 1.94 15.82 1 12.48 1 6.58 1 1.82 5.76 1.82 11.64s4.76 10.64 10.66 10.64c3.22 0 5.66-1.06 7.54-3.04 1.96-1.96 2.58-4.74 2.58-7.08 0-.46-.04-.92-.1-1.38H12.48z" fill="#EA4335"></path>
+</svg>
+                    Continue with Google
+                </button>
+<div class="flex items-center gap-4 py-2">
+<div class="h-px bg-glass-border flex-1"></div>
+<span class="text-[10px] uppercase tracking-widest text-on-surface-variant/50 font-bold">or</span>
+<div class="h-px bg-glass-border flex-1"></div>
+</div>
+<!-- Email Field -->
+<div class="space-y-2 group">
+<label class="font-label-mono text-label-mono text-on-surface-variant ml-1" for="login-email">Email Address</label>
+<div class="relative flex items-center input-glow transition-all bg-surface-container-low border border-glass-border rounded-lg">
+<span class="material-symbols-outlined ml-4 text-on-surface-variant">alternate_email</span>
+<input class="bg-transparent border-none focus:ring-0 text-on-surface w-full py-3 px-3 placeholder:text-on-surface-variant/30" id="login-email" placeholder="name@company.com" type="email"/>
+</div>
+</div>
+<!-- Password Field -->
+<div class="space-y-2 group">
+<div class="flex justify-between items-end px-1">
+<label class="font-label-mono text-label-mono text-on-surface-variant" for="login-password">Password</label>
+<a class="text-xs text-primary hover:underline transition-all" href="#">Forgot?</a>
+</div>
+<div class="relative flex items-center input-glow transition-all bg-surface-container-low border border-glass-border rounded-lg">
+<span class="material-symbols-outlined ml-4 text-on-surface-variant">lock_open</span>
+<input class="bg-transparent border-none focus:ring-0 text-on-surface w-full py-3 px-3 placeholder:text-on-surface-variant/30 font-label-mono" id="login-password" placeholder="••••••••" type="password"/>
+</div>
+</div>
+<button class="w-full bg-primary text-on-primary font-label-mono text-label-mono py-4 rounded-lg emerald-button-glow transition-all hover:scale-[1.02] active:scale-98 font-bold" type="submit">
+                    Sign In
+                </button>
+</form>
+<footer class="mt-8 text-center">
+<p class="text-on-surface-variant font-body-md text-sm">
+                    New to Voxel Finance? 
+                    <button class="text-primary font-bold hover:underline transition-all ml-1" onclick="toggleFlow('registration-flow')">Create Account</button>
+</p>
+</footer>
+</section>
+<!-- Registration Card -->
+<section class="glass-card rounded-xl p-gutter md:p-10 hidden-flow" id="registration-flow">
+<header class="text-center mb-8">
+<div class="mb-4 inline-flex items-center justify-center">
+<span class="font-display-lg text-headline-lg tracking-tighter text-primary">Voxel Pro</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Join the ecosystem</h1>
+<p class="text-on-surface-variant font-body-md mt-2">Precision engineering for your capital.</p>
+</header>
+<form class="space-y-4" onsubmit="return false;">
+<div class="grid grid-cols-2 gap-4">
+<div class="space-y-1">
+<label class="font-label-mono text-label-mono text-on-surface-variant ml-1">First Name</label>
+<input class="w-full bg-surface-container-low border border-glass-border rounded-lg py-3 px-4 focus:ring-0 input-glow text-on-surface transition-all placeholder:text-on-surface-variant/30" placeholder="John" type="text"/>
+</div>
+<div class="space-y-1">
+<label class="font-label-mono text-label-mono text-on-surface-variant ml-1">Last Name</label>
+<input class="w-full bg-surface-container-low border border-glass-border rounded-lg py-3 px-4 focus:ring-0 input-glow text-on-surface transition-all placeholder:text-on-surface-variant/30" placeholder="Doe" type="text"/>
+</div>
+</div>
+<div class="space-y-1">
+<label class="font-label-mono text-label-mono text-on-surface-variant ml-1">Work Email</label>
+<input class="w-full bg-surface-container-low border border-glass-border rounded-lg py-3 px-4 focus:ring-0 input-glow text-on-surface transition-all placeholder:text-on-surface-variant/30" placeholder="name@company.com" type="email"/>
+</div>
+<div class="space-y-1">
+<label class="font-label-mono text-label-mono text-on-surface-variant ml-1">Create Password</label>
+<input class="w-full bg-surface-container-low border border-glass-border rounded-lg py-3 px-4 focus:ring-0 input-glow text-on-surface transition-all placeholder:text-on-surface-variant/30 font-label-mono" placeholder="••••••••" type="password"/>
+<div class="flex gap-1 mt-2 px-1">
+<div class="h-1 flex-1 bg-primary rounded-full"></div>
+<div class="h-1 flex-1 bg-primary rounded-full"></div>
+<div class="h-1 flex-1 bg-primary/20 rounded-full"></div>
+<div class="h-1 flex-1 bg-primary/20 rounded-full"></div>
+</div>
+</div>
+<div class="pt-2">
+<label class="flex items-start gap-3 cursor-pointer group">
+<input class="mt-1 w-4 h-4 bg-surface-container-low border-glass-border text-primary rounded focus:ring-0 focus:ring-offset-0" type="checkbox"/>
+<span class="text-xs text-on-surface-variant leading-relaxed">
+                            I agree to the <a class="text-on-surface underline" href="#">Terms of Service</a> and <a class="text-on-surface underline" href="#">Privacy Policy</a>.
+                        </span>
+</label>
+</div>
+<button class="w-full bg-primary text-on-primary font-label-mono text-label-mono py-4 rounded-lg emerald-button-glow transition-all hover:scale-[1.02] active:scale-98 font-bold mt-4" type="submit">
+                    Initialize Account
+                </button>
+</form>
+<footer class="mt-8 text-center border-t border-glass-border pt-6">
+<p class="text-on-surface-variant font-body-md text-sm">
+                    Already an investor? 
+                    <button class="text-primary font-bold hover:underline transition-all ml-1" onclick="toggleFlow('login-flow')">Log In</button>
+</p>
+</footer>
+</section>
+<!-- Ambient Branding -->
+<div class="mt-12 flex justify-center gap-8 opacity-40">
+<span class="font-label-mono text-[10px] tracking-widest flex items-center gap-2">
+<span class="material-symbols-outlined !text-sm">verified_user</span>
+                SECURED END-TO-END
+            </span>
+<span class="font-label-mono text-[10px] tracking-widest flex items-center gap-2">
+<span class="material-symbols-outlined !text-sm">analytics</span>
+                V2.4 ENGINE
+            </span>
+</div>
+</main>
+<script>
+        function toggleFlow(flowId) {
+            const loginFlow = document.getElementById('login-flow');
+            const regFlow = document.getElementById('registration-flow');
+
+            if (flowId === 'registration-flow') {
+                loginFlow.classList.add('hidden-flow');
+                loginFlow.classList.remove('fade-in');
+                
+                regFlow.style.display = 'block';
+                setTimeout(() => {
+                    regFlow.classList.remove('hidden-flow');
+                    regFlow.classList.add('fade-in');
+                }, 50);
+            } else {
+                regFlow.classList.add('hidden-flow');
+                regFlow.classList.remove('fade-in');
+                
+                loginFlow.style.display = 'block';
+                setTimeout(() => {
+                    loginFlow.classList.remove('hidden-flow');
+                    loginFlow.classList.add('fade-in');
+                }, 50);
+            }
+        }
+
+        // Add subtle mouse-follow parallax effect to the card
+        document.addEventListener('mousemove', (e) => {
+            const cards = document.querySelectorAll('.glass-card');
+            const xAxis = (window.innerWidth / 2 - e.pageX) / 45;
+            const yAxis = (window.innerHeight / 2 - e.pageY) / 45;
+            
+            cards.forEach(card => {
+                if (!card.classList.contains('hidden-flow')) {
+                    card.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+                }
+            });
+        });
+
+        // Initialize state
+        document.getElementById('registration-flow').style.display = 'none';
+    </script>
+</body></html>

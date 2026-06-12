@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>My Goals | Voxel Finance</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Geist:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-fixed-variant": "#005236",
+                    "secondary-container": "#0566d9",
+                    "on-tertiary-fixed": "#131b2e",
+                    "secondary-fixed-dim": "#adc6ff",
+                    "surface-variant": "#2f3632",
+                    "dark-slate": "#0F172A",
+                    "primary-fixed-dim": "#4edea3",
+                    "surface-container": "#1a211d",
+                    "outline-variant": "#3c4a42",
+                    "tertiary": "#bec6e0",
+                    "on-tertiary-container": "#31394d",
+                    "on-background": "#dde4dd",
+                    "inverse-primary": "#006c49",
+                    "mint-accent": "#D1FAE5",
+                    "surface-container-high": "#242c27",
+                    "outline": "#86948a",
+                    "surface-container-low": "#161d19",
+                    "secondary-fixed": "#d8e2ff",
+                    "primary-fixed": "#6ffbbe",
+                    "chart-info": "#3B82F6",
+                    "surface-bright": "#343b36",
+                    "on-primary": "#003824",
+                    "on-tertiary": "#283044",
+                    "emerald-glow": "#10B981",
+                    "tertiary-container": "#9ba2bb",
+                    "error-container": "#93000a",
+                    "on-primary-fixed": "#002113",
+                    "on-secondary": "#002e6a",
+                    "surface-container-lowest": "#09100c",
+                    "on-surface": "#dde4dd",
+                    "surface": "#0e1511",
+                    "error": "#ffb4ab",
+                    "on-error-container": "#ffdad6",
+                    "chart-success": "#10B981",
+                    "on-tertiary-fixed-variant": "#3f465c",
+                    "primary": "#4edea3",
+                    "on-secondary-container": "#e6ecff",
+                    "glass-border": "rgba(255, 255, 255, 0.08)",
+                    "tertiary-fixed-dim": "#bec6e0",
+                    "deep-navy": "#020617",
+                    "on-primary-container": "#00422b",
+                    "inverse-on-surface": "#2b322d",
+                    "on-error": "#690005",
+                    "primary-container": "#10b981",
+                    "on-surface-variant": "#bbcabf",
+                    "on-secondary-fixed-variant": "#004395",
+                    "surface-container-highest": "#2f3632",
+                    "electric-blue": "#3B82F6",
+                    "tertiary-fixed": "#dae2fd",
+                    "secondary": "#adc6ff",
+                    "surface-tint": "#4edea3",
+                    "inverse-surface": "#dde4dd",
+                    "chart-warning": "#F59E0B",
+                    "background": "#0e1511",
+                    "surface-dim": "#0e1511",
+                    "on-secondary-fixed": "#001a42"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-max": "1200px",
+                    "section-padding": "80px",
+                    "unit": "8px",
+                    "gutter": "24px",
+                    "margin-mobile": "16px"
+            },
+            "fontFamily": {
+                    "headline-lg-mobile": ["Inter"],
+                    "body-md": ["Inter"],
+                    "chart-value": ["Geist"],
+                    "headline-lg": ["Inter"],
+                    "label-mono": ["Geist"],
+                    "display-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400"}],
+                    "chart-value": ["14px", {"lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "label-mono": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "display-lg": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.04em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #0e1511;
+            color: #dde4dd;
+            overflow-x: hidden;
+        }
+        .glass-card {
+            background: rgba(26, 33, 29, 0.4);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 24px -1px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .glass-card:hover {
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.1);
+            transform: translateY(-2px);
+        }
+        .emerald-glow-bar {
+            box-shadow: 0 0 12px rgba(16, 185, 129, 0.6);
+        }
+        .shimmer-bg {
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+            background-size: 200% 100%;
+            animation: shimmer 3s infinite;
+        }
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0e1511;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2f3632;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md">
+<!-- Sidebar Navigation -->
+<aside class="fixed left-0 top-0 h-screen flex flex-col bg-surface-container/40 backdrop-blur-md h-full w-64 border-r glass-border border-r z-50 hidden md:flex">
+<div class="p-gutter">
+<h1 class="font-headline-lg text-headline-lg text-primary tracking-tighter">Voxel Pro</h1>
+<p class="font-label-mono text-label-mono text-on-surface-variant opacity-60">Premium Tier</p>
+</div>
+<nav class="flex-1 px-4 space-y-2 mt-8">
+<a class="flex items-center gap-3 p-3 rounded-lg text-on-surface-variant hover:bg-white/5 transition-all hover:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-mono text-label-mono">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 p-3 rounded-lg text-primary border-r-4 border-primary bg-primary/10 transition-all hover:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined">track_changes</span>
+<span class="font-label-mono text-label-mono">Goals</span>
+</a>
+<a class="flex items-center gap-3 p-3 rounded-lg text-on-surface-variant hover:bg-white/5 transition-all hover:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="font-label-mono text-label-mono">Expenses</span>
+</a>
+<a class="flex items-center gap-3 p-3 rounded-lg text-on-surface-variant hover:bg-white/5 transition-all hover:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+<span class="font-label-mono text-label-mono">Budget</span>
+</a>
+<a class="flex items-center gap-3 p-3 rounded-lg text-on-surface-variant hover:bg-white/5 transition-all hover:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined">insights</span>
+<span class="font-label-mono text-label-mono">Analytics</span>
+</a>
+<a class="flex items-center gap-3 p-3 rounded-lg text-on-surface-variant hover:bg-white/5 transition-all hover:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined">psychology</span>
+<span class="font-label-mono text-label-mono">AI Insights</span>
+</a>
+<a class="flex items-center gap-3 p-3 rounded-lg text-on-surface-variant hover:bg-white/5 transition-all hover:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-mono text-label-mono">Profile</span>
+</a>
+</nav>
+<div class="p-6 mt-auto">
+<button class="w-full py-3 px-4 bg-primary text-on-primary font-bold rounded-xl active:scale-95 transition-transform">
+                Upgrade to Ultra
+            </button>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="md:ml-64 min-h-screen flex flex-col relative">
+<!-- Header -->
+<header class="sticky top-4 z-40 flex justify-between items-center px-gutter w-full max-w-[1200px] mx-auto bg-surface/60 backdrop-blur-xl rounded-xl mt-4 shadow-[0_0_20px_rgba(16,185,129,0.1)] border-b glass-border">
+<div class="flex items-center h-16">
+<h2 class="font-display-lg text-headline-lg tracking-tighter text-primary">Voxel Finance</h2>
+<nav class="hidden lg:flex ml-12 gap-8">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-300" href="#">Markets</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-300" href="#">Assets</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-300" href="#">News</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-300" href="#">Support</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="hidden sm:block text-on-surface-variant hover:text-primary transition-colors px-4">View Demo</button>
+<button class="bg-primary text-on-primary font-bold px-6 py-2 rounded-lg scale-98 active:scale-95 transition-transform" onclick="document.getElementById('goalModal').classList.remove('hidden')">
+                    Get Started
+                </button>
+</div>
+</header>
+<!-- Goals Canvas -->
+<section class="flex-1 px-gutter py-section-padding max-w-[1200px] mx-auto w-full">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+<div>
+<span class="font-label-mono text-label-mono text-primary uppercase tracking-widest">Financial Milestones</span>
+<h1 class="font-display-lg text-headline-lg md:text-display-lg tracking-tighter mt-2">My Goals</h1>
+</div>
+<button class="flex items-center gap-2 px-8 py-4 bg-primary/10 border border-primary/20 text-primary hover:bg-primary hover:text-on-primary transition-all rounded-xl" onclick="document.getElementById('goalModal').classList.remove('hidden')">
+<span class="material-symbols-outlined">add_circle</span>
+<span class="font-bold">Create New Goal</span>
+</button>
+</div>
+<!-- Bento Grid Layout for Goals -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Goal Card: Buy iPhone -->
+<div class="glass-card rounded-2xl overflow-hidden flex flex-col group">
+<div class="h-48 relative overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A high-end modern smartphone sitting on a minimalist dark glass surface, illuminated by a single cool-toned spotlight. The aesthetic is ultra-sleek and premium, focusing on the metallic edges and polished screen of the device. Shadows are soft, contributing to a tech-forward and luxurious mood within the dark Voxel Finance design system." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBl6TMHhh2_XJZiHZNkUXgszuukYnn9vvDUth0UaAMeMLrfPyy5vLzULu_iI841r0BONjupqk_zOLMFGY0HqzcGxvtgqe58V0SZD56g0oLjqnR9m8SdU6iWYIHIz6GYTo8Kc_fbf0fbTEmpKg3OI0KcpqLub_6VhyEEuX2X8WwuLh0ETpA94UdDiZqzwO6m1hyhBbC6drLDXf5CiSI-o1IhZAB8GfPDju5AkyU_OpcWxYVQJv8nd4DLyQ0PA4D4e60iI101hq3sZlw"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface to-transparent"></div>
+<div class="absolute bottom-4 left-6">
+<h3 class="font-headline-lg text-2xl text-white">Buy iPhone</h3>
+<p class="font-label-mono text-label-mono text-on-surface-variant">Tech Acquisition</p>
+</div>
+</div>
+<div class="p-6 space-y-6">
+<div class="flex justify-between items-end">
+<div>
+<p class="font-label-mono text-label-mono text-on-surface-variant">Percentage</p>
+<p class="font-chart-value text-2xl text-primary">75%</p>
+</div>
+<div class="text-right">
+<p class="font-label-mono text-label-mono text-on-surface-variant">Remaining</p>
+<p class="font-chart-value text-2xl text-on-surface">$325.00</p>
+</div>
+</div>
+<div class="relative h-2 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="absolute top-0 left-0 h-full bg-primary emerald-glow-bar" style="width: 75%;"></div>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">schedule</span>
+<span class="font-label-mono text-xs uppercase tracking-tight">45 days remaining</span>
+</div>
+</div>
+</div>
+<!-- Goal Card: Buy Bike -->
+<div class="glass-card rounded-2xl overflow-hidden flex flex-col group">
+<div class="h-48 relative overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A high-performance matte black road bike leaning against a brutalist concrete wall at dusk. The lighting is dramatic, highlighting the carbon fiber textures and precision-engineered gears. The mood is sporty and sophisticated, using the emerald and dark slate color palette to convey a sense of premium hardware and adventurous lifestyle." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXQS4tRNN1hhUTk_SiYl2WkmqAFuVT5IFRElAWuAgo2TyjI5Ege4manlw2sXgei79L1liF9iUgw3bbaJYgSuXXRKqw1jZhIiAoWwOjGp87anANbsMYjc7-oR8e4HReL3LQI3ih6mTrT_rwGGtuHsKSxpTYpls5WYCYVKaUeeRE-ARAl5XK8eVU8Wx97O57SPWQRuKwJp9H8lcQUFwpF15jf9rkoZ6Ku5XeSiBt_vD7ztJ145CkC0zxhqrGiYtOzOjh-5C_mqr5ItU"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface to-transparent"></div>
+<div class="absolute bottom-4 left-6">
+<h3 class="font-headline-lg text-2xl text-white">Buy Bike</h3>
+<p class="font-label-mono text-label-mono text-on-surface-variant">Lifestyle Upgrade</p>
+</div>
+</div>
+<div class="p-6 space-y-6">
+<div class="flex justify-between items-end">
+<div>
+<p class="font-label-mono text-label-mono text-on-surface-variant">Percentage</p>
+<p class="font-chart-value text-2xl text-primary">32%</p>
+</div>
+<div class="text-right">
+<p class="font-label-mono text-label-mono text-on-surface-variant">Remaining</p>
+<p class="font-chart-value text-2xl text-on-surface">$1,496.00</p>
+</div>
+</div>
+<div class="relative h-2 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="absolute top-0 left-0 h-full bg-primary emerald-glow-bar" style="width: 32%;"></div>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">schedule</span>
+<span class="font-label-mono text-xs uppercase tracking-tight">120 days remaining</span>
+</div>
+</div>
+</div>
+<!-- Goal Card: Vacation -->
+<div class="glass-card rounded-2xl overflow-hidden flex flex-col group">
+<div class="h-48 relative overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A serene, wide-angle shot of a luxury overwater villa in the Maldives at twilight. The water is crystal clear with deep teal hues, and the sky is a soft gradient of indigo and deep violet. Warm interior lights from the villa reflect softly on the ocean surface, creating a peaceful, aspirational atmosphere that feels expensive and exclusive." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1S0_EkQbTaRaOkWbrnU1yNYvwxVFM3xrBVHaEwB3AtR-spqYqzQ_ecstP0Ffzb6jt7RATGYCbKxklAgahI73y4827umpccFKQV6PboAgCqha1coyIsrQ13tKhbNPeZTZQSbnR4uFx5TgND7I6iwf5jG9rsRVGib8G7aOtt59iEa0WmEm9ttnvpXAreN143XFEgcw4veyGKu3WBxcCfcWnIW0eCsFpUUKobzJjszEAZ4ELCvg0UoK8RhledWXlPjDUKES9g9bFVRc"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface to-transparent"></div>
+<div class="absolute bottom-4 left-6">
+<h3 class="font-headline-lg text-2xl text-white">Vacation</h3>
+<p class="font-label-mono text-label-mono text-on-surface-variant">Global Experience</p>
+</div>
+</div>
+<div class="p-6 space-y-6">
+<div class="flex justify-between items-end">
+<div>
+<p class="font-label-mono text-label-mono text-on-surface-variant">Percentage</p>
+<p class="font-chart-value text-2xl text-primary">12%</p>
+</div>
+<div class="text-right">
+<p class="font-label-mono text-label-mono text-on-surface-variant">Remaining</p>
+<p class="font-chart-value text-2xl text-on-surface">$4,400.00</p>
+</div>
+</div>
+<div class="relative h-2 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="absolute top-0 left-0 h-full bg-primary emerald-glow-bar" style="width: 12%;"></div>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">schedule</span>
+<span class="font-label-mono text-xs uppercase tracking-tight">210 days remaining</span>
+</div>
+</div>
+</div>
+<!-- Analytics Summary Card -->
+<div class="glass-card lg:col-span-2 rounded-2xl p-8 flex flex-col justify-between relative overflow-hidden">
+<div class="shimmer-bg absolute inset-0 opacity-10 pointer-events-none"></div>
+<div class="relative z-10">
+<h3 class="font-headline-lg text-2xl mb-2">Portfolio Trajectory</h3>
+<p class="text-on-surface-variant max-w-md">Your savings rate is 15% higher than last month. At this pace, you'll reach your 'iPhone' goal 12 days early.</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
+<div class="p-4 rounded-xl bg-surface-container-high/50 border border-glass-border">
+<p class="font-label-mono text-[10px] uppercase text-on-surface-variant mb-1">Total Target</p>
+<p class="font-chart-value text-xl">$8,521</p>
+</div>
+<div class="p-4 rounded-xl bg-surface-container-high/50 border border-glass-border">
+<p class="font-label-mono text-[10px] uppercase text-on-surface-variant mb-1">Total Saved</p>
+<p class="font-chart-value text-xl text-primary">$2,300</p>
+</div>
+<div class="p-4 rounded-xl bg-surface-container-high/50 border border-glass-border">
+<p class="font-label-mono text-[10px] uppercase text-on-surface-variant mb-1">Monthly Avg</p>
+<p class="font-chart-value text-xl">$450</p>
+</div>
+<div class="p-4 rounded-xl bg-surface-container-high/50 border border-glass-border">
+<p class="font-label-mono text-[10px] uppercase text-on-surface-variant mb-1">Est. Completion</p>
+<p class="font-chart-value text-xl">Oct 2024</p>
+</div>
+</div>
+</div>
+<!-- Quick Action Card -->
+<div class="glass-card rounded-2xl p-8 bg-primary/5 flex flex-col justify-center items-center text-center border-dashed border-primary/40 group cursor-pointer hover:bg-primary/10 transition-all">
+<div class="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary text-3xl">rocket_launch</span>
+</div>
+<h4 class="font-headline-lg text-xl mb-2">One-Time Boost</h4>
+<p class="text-on-surface-variant text-sm px-4">Allocate unexpected windfall or surplus budget to your goals instantly.</p>
+<button class="mt-6 font-label-mono text-primary uppercase tracking-widest text-xs font-bold">Initiate Transfer →</button>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="w-full mt-auto px-gutter max-w-[1200px] mx-auto flex flex-col md:flex-row justify-between items-center w-full py-section-padding glass-border border-t bg-surface-container-lowest/80 backdrop-blur-lg">
+<div class="mb-6 md:mb-0">
+<h3 class="font-headline-lg text-headline-lg text-primary tracking-tighter">Voxel Finance</h3>
+<p class="text-on-surface-variant text-sm mt-2 opacity-60">© 2024 Voxel Finance. Precision Engineered.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-8">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-emerald-glow transition-colors opacity-80 hover:opacity-100" href="#">Privacy Policy</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-emerald-glow transition-colors opacity-80 hover:opacity-100" href="#">Terms of Service</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-emerald-glow transition-colors opacity-80 hover:opacity-100" href="#">Security</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-emerald-glow transition-colors opacity-80 hover:opacity-100" href="#">API Documentation</a>
+</div>
+</footer>
+</main>
+<!-- Create Goal Modal -->
+<div class="hidden fixed inset-0 z-[100] flex items-center justify-center p-4" id="goalModal">
+<div class="absolute inset-0 bg-background/80 backdrop-blur-md" onclick="document.getElementById('goalModal').classList.add('hidden')"></div>
+<div class="glass-card w-full max-w-lg rounded-3xl p-8 relative z-10 shadow-[0_0_40px_rgba(16,185,129,0.15)] animate-in fade-in zoom-in duration-300">
+<div class="flex justify-between items-center mb-8">
+<h2 class="font-headline-lg text-2xl">New Saving Goal</h2>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/5 transition-colors" onclick="document.getElementById('goalModal').classList.add('hidden')">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<form class="space-y-6">
+<div>
+<label class="font-label-mono text-xs uppercase text-on-surface-variant block mb-2">Goal Name</label>
+<input class="w-full bg-surface-container-high border-glass-border focus:border-primary focus:ring-1 focus:ring-primary rounded-xl p-4 text-on-surface placeholder-on-surface-variant/40" placeholder="e.g. New MacBook Pro" type="text"/>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<label class="font-label-mono text-xs uppercase text-on-surface-variant block mb-2">Target Amount</label>
+<input class="w-full bg-surface-container-high border-glass-border focus:border-primary focus:ring-1 focus:ring-primary rounded-xl p-4 text-on-surface font-label-mono" placeholder="2500" type="number"/>
+</div>
+<div>
+<label class="font-label-mono text-xs uppercase text-on-surface-variant block mb-2">Target Date</label>
+<input class="w-full bg-surface-container-high border-glass-border focus:border-primary focus:ring-1 focus:ring-primary rounded-xl p-4 text-on-surface" type="date"/>
+</div>
+</div>
+<div>
+<label class="font-label-mono text-xs uppercase text-on-surface-variant block mb-2">Initial Deposit</label>
+<input class="w-full bg-surface-container-high border-glass-border focus:border-primary focus:ring-1 focus:ring-primary rounded-xl p-4 text-on-surface font-label-mono" placeholder="500" type="number"/>
+</div>
+<div class="pt-4">
+<button class="w-full py-4 bg-primary text-on-primary font-bold rounded-xl shadow-[0_0_15px_rgba(16,185,129,0.3)] hover:brightness-110 active:scale-[0.98] transition-all" type="button">
+                        Launch Goal
+                    </button>
+</div>
+</form>
+</div>
+</div>
+<!-- Mobile Navigation (Bottom) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full bg-surface-container/80 backdrop-blur-xl border-t glass-border px-4 py-3 flex justify-around items-center z-50">
+<button class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-mono text-[10px]">DASHBOARD</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">track_changes</span>
+<span class="font-label-mono text-[10px]">GOALS</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+<span class="font-label-mono text-[10px]">BUDGET</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-mono text-[10px]">PROFILE</span>
+</button>
+</nav>
+<script>
+        // Micro-interaction for cards on mouse movement
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+    </script>
+</body></html>

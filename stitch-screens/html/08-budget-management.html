@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Geist:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .glass-card {
+            background: rgba(26, 33, 29, 0.4);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+        .glass-border {
+            border-color: rgba(255, 255, 255, 0.08);
+        }
+        .emerald-shimmer {
+            background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.1), transparent);
+            background-size: 200% 100%;
+            animation: shimmer 3s infinite;
+        }
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        .scale-98:active { transform: scale(0.98); }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed-variant": "#005236",
+                        "secondary-container": "#0566d9",
+                        "on-tertiary-fixed": "#131b2e",
+                        "secondary-fixed-dim": "#adc6ff",
+                        "surface-variant": "#2f3632",
+                        "dark-slate": "#0F172A",
+                        "primary-fixed-dim": "#4edea3",
+                        "surface-container": "#1a211d",
+                        "outline-variant": "#3c4a42",
+                        "tertiary": "#bec6e0",
+                        "on-tertiary-container": "#31394d",
+                        "on-background": "#dde4dd",
+                        "inverse-primary": "#006c49",
+                        "mint-accent": "#D1FAE5",
+                        "surface-container-high": "#242c27",
+                        "outline": "#86948a",
+                        "surface-container-low": "#161d19",
+                        "secondary-fixed": "#d8e2ff",
+                        "primary-fixed": "#6ffbbe",
+                        "chart-info": "#3B82F6",
+                        "surface-bright": "#343b36",
+                        "on-primary": "#003824",
+                        "on-tertiary": "#283044",
+                        "emerald-glow": "#10B981",
+                        "tertiary-container": "#9ba2bb",
+                        "error-container": "#93000a",
+                        "on-primary-fixed": "#002113",
+                        "on-secondary": "#002e6a",
+                        "surface-container-lowest": "#09100c",
+                        "on-surface": "#dde4dd",
+                        "surface": "#0e1511",
+                        "error": "#ffb4ab",
+                        "on-error-container": "#ffdad6",
+                        "chart-success": "#10B981",
+                        "on-tertiary-fixed-variant": "#3f465c",
+                        "primary": "#4edea3",
+                        "on-secondary-container": "#e6ecff",
+                        "glass-border": "rgba(255, 255, 255, 0.08)",
+                        "tertiary-fixed-dim": "#bec6e0",
+                        "deep-navy": "#020617",
+                        "on-primary-container": "#00422b",
+                        "inverse-on-surface": "#2b322d",
+                        "on-error": "#690005",
+                        "primary-container": "#10b981",
+                        "on-surface-variant": "#bbcabf",
+                        "on-secondary-fixed-variant": "#004395",
+                        "surface-container-highest": "#2f3632",
+                        "electric-blue": "#3B82F6",
+                        "tertiary-fixed": "#dae2fd",
+                        "secondary": "#adc6ff",
+                        "surface-tint": "#4edea3",
+                        "inverse-surface": "#dde4dd",
+                        "chart-warning": "#F59E0B",
+                        "background": "#0e1511",
+                        "surface-dim": "#0e1511",
+                        "on-secondary-fixed": "#001a42"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-max": "1200px",
+                        "section-padding": "80px",
+                        "unit": "8px",
+                        "gutter": "24px",
+                        "margin-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Inter"],
+                        "body-md": ["Inter"],
+                        "chart-value": ["Geist"],
+                        "headline-lg": ["Inter"],
+                        "label-mono": ["Geist"],
+                        "display-lg": ["Inter"]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md selection:bg-primary/30 min-h-screen flex">
+<!-- Sidebar Navigation Shell -->
+<aside class="fixed left-0 top-0 h-screen flex flex-col bg-surface-container/40 backdrop-blur-md h-full w-64 border-r glass-border z-50">
+<div class="p-gutter">
+<h1 class="font-headline-lg text-headline-lg text-primary tracking-tighter">Voxel Pro</h1>
+<p class="font-label-mono text-label-mono opacity-60">Premium Tier</p>
+</div>
+<nav class="flex-1 px-4 space-y-2">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-white/5 transition-all hover:translate-x-1 duration-200 rounded-xl" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-mono text-label-mono">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-white/5 transition-all hover:translate-x-1 duration-200 rounded-xl" href="#">
+<span class="material-symbols-outlined">track_changes</span>
+<span class="font-label-mono text-label-mono">Goals</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-white/5 transition-all hover:translate-x-1 duration-200 rounded-xl" href="#">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="font-label-mono text-label-mono">Expenses</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-primary border-r-4 border-primary bg-primary/10 transition-all hover:translate-x-1 duration-200 rounded-l-xl" href="#">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+<span class="font-label-mono text-label-mono">Budget</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-white/5 transition-all hover:translate-x-1 duration-200 rounded-xl" href="#">
+<span class="material-symbols-outlined">insights</span>
+<span class="font-label-mono text-label-mono">Analytics</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-white/5 transition-all hover:translate-x-1 duration-200 rounded-xl" href="#">
+<span class="material-symbols-outlined">psychology</span>
+<span class="font-label-mono text-label-mono">AI Insights</span>
+</a>
+</nav>
+<div class="p-gutter mt-auto">
+<div class="glass-card p-4 rounded-xl mb-4 border-primary/20">
+<p class="text-[10px] font-label-mono text-primary mb-2">LIMIT REACHED</p>
+<div class="h-1 bg-surface-container rounded-full overflow-hidden mb-2">
+<div class="h-full bg-primary w-4/5 shadow-[0_0_8px_rgba(78,222,163,0.5)]"></div>
+</div>
+<button class="w-full py-2 bg-primary text-on-primary font-label-mono text-label-mono rounded-lg hover:opacity-90 transition-opacity">Upgrade to Ultra</button>
+</div>
+<div class="flex items-center gap-3 px-2">
+<img alt="User" class="w-10 h-10 rounded-full border-2 border-primary/20" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCiiLgUdOQa2sI9cjwWwUe9u3qEDY4zxQTg9fbK_nz07LYwEZIGn51XlbedxBmKtSgTzTP4Ly1YczH61LrdSRHViR-7V9oph64yJSGOU7j7q-7oG2viEQVN2WXI-4NDqMjVhZ3M6rjdNhM8YGgCuJYOxQo_yddo_rsxB14JM4SAGDTPkl7dFb3cDJnLzeeDeLRW6RH3X9WWd7Q7yOLJ-8W3_a-c2toIXZC_ltOWuwmCXOWXC1CwagVm02r28erBEtCIv7ydahNRdhk"/>
+<div class="overflow-hidden">
+<p class="font-label-mono text-label-mono truncate">Alex Sterling</p>
+<p class="text-[10px] opacity-50 truncate">alex@voxel.finance</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 ml-64 p-gutter relative overflow-hidden">
+<!-- Background Ambient Shader -->
+
+<div class="relative z-10 max-w-[1200px] mx-auto space-y-12">
+<!-- Header & Primary Action -->
+<section class="flex flex-col md:flex-row justify-between items-end gap-6 pt-12">
+<div class="space-y-2">
+<h2 class="font-headline-lg text-headline-lg tracking-tight text-on-surface">Budget Management</h2>
+<p class="text-on-surface-variant max-w-md">Precision tracking for your digital capital. Monitor limits and optimize cash flow across all categories.</p>
+</div>
+<button class="group flex items-center gap-3 bg-primary px-6 py-4 rounded-xl text-on-primary font-label-mono text-label-mono scale-98 transition-all hover:shadow-[0_0_20px_rgba(16,185,129,0.3)]">
+<span class="material-symbols-outlined">add_circle</span>
+                    Create Budget
+                </button>
+</section>
+<!-- Total Budget Visualization (Bento High Priority) -->
+<section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<div class="lg:col-span-2 glass-card p-8 rounded-2xl relative overflow-hidden flex flex-col justify-between h-[320px]">
+<div class="flex justify-between items-start">
+<div>
+<p class="font-label-mono text-label-mono text-primary uppercase tracking-widest mb-1">Remaining Balance</p>
+<h3 class="font-display-lg text-display-lg">$4,280.50</h3>
+</div>
+<div class="text-right">
+<p class="font-label-mono text-label-mono opacity-50 mb-1">MONTHLY LIMIT</p>
+<p class="font-chart-value text-chart-value">$12,000.00</p>
+</div>
+</div>
+<div class="mt-8">
+<div class="flex justify-between font-label-mono text-[10px] mb-2 opacity-50">
+<span>TOTAL SPENT: $7,719.50</span>
+<span>64.3% CONSUMED</span>
+</div>
+<div class="h-4 bg-surface-container rounded-full overflow-hidden relative">
+<div class="h-full bg-primary emerald-shimmer rounded-full transition-all duration-1000" style="width: 64.3%;"></div>
+<div class="absolute top-0 right-[35.7%] w-[2px] h-full bg-white/20 shadow-[0_0_10px_white]"></div>
+</div>
+</div>
+<!-- Faint area chart decorative background -->
+<div class="absolute bottom-0 left-0 right-0 h-32 opacity-20 pointer-events-none">
+<svg class="w-full h-full" preserveaspectratio="none" viewbox="0 0 400 100">
+<defs>
+<lineargradient id="grad1" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" style="stop-color:var(--primary);stop-opacity:0.5"></stop>
+<stop offset="100%" style="stop-color:transparent;stop-opacity:0"></stop>
+</lineargradient>
+</defs>
+<path d="M0,100 C50,80 100,90 150,60 C200,30 250,50 300,20 C350,10 400,30 400,30 V100 H0 Z" fill="url(#grad1)"></path>
+</svg>
+</div>
+</div>
+<div class="glass-card p-8 rounded-2xl flex flex-col justify-center items-center text-center space-y-4 border-error/20">
+<div class="w-16 h-16 rounded-full bg-error/10 flex items-center justify-center text-error mb-2 shadow-[0_0_20px_rgba(255,180,171,0.15)]">
+<span class="material-symbols-outlined text-4xl">warning</span>
+</div>
+<div>
+<h4 class="font-headline-lg text-headline-lg text-error">Overspending</h4>
+<p class="text-on-surface-variant text-sm mt-2">You've exceeded your 'Travel' budget by 12%. Adjust your limits or reallocate funds.</p>
+</div>
+<button class="text-error font-label-mono text-label-mono hover:underline transition-all">Review Exceptions</button>
+</div>
+</section>
+<!-- Category Cards (Asymmetric Grid) -->
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Food Card -->
+<div class="glass-card p-6 rounded-2xl space-y-6 hover:border-primary/40 transition-colors group">
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">restaurant</span>
+</div>
+<span class="font-headline-lg text-[20px]">Food</span>
+</div>
+<span class="font-label-mono text-label-mono opacity-40">Monthly</span>
+</div>
+<div class="space-y-4">
+<div class="flex justify-between items-baseline">
+<span class="font-display-lg text-[28px]">$840<span class="text-sm opacity-50 font-body-md">/1,200</span></span>
+<span class="text-chart-success font-label-mono text-[10px]">70%</span>
+</div>
+<div class="h-2 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full group-hover:shadow-[0_0_12px_rgba(78,222,163,0.4)] transition-all duration-500" style="width: 70%;"></div>
+</div>
+</div>
+<div class="pt-4 border-t glass-border flex justify-between items-center text-[11px] font-label-mono opacity-50">
+<span>LEFT: $360.00</span>
+<span>12 TRANSACTIONS</span>
+</div>
+</div>
+<!-- Travel Card (Overspent Alert) -->
+<div class="glass-card p-6 rounded-2xl space-y-6 border-error/30 relative overflow-hidden">
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-error/0 via-error to-error/0"></div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-error/10 flex items-center justify-center text-error">
+<span class="material-symbols-outlined">flight</span>
+</div>
+<span class="font-headline-lg text-[20px]">Travel</span>
+</div>
+<div class="flex items-center gap-1 text-error animate-pulse">
+<span class="material-symbols-outlined text-sm">priority_high</span>
+<span class="font-label-mono text-[10px] uppercase">Alert</span>
+</div>
+</div>
+<div class="space-y-4">
+<div class="flex justify-between items-baseline">
+<span class="font-display-lg text-[28px] text-error">$2,800<span class="text-sm opacity-50 font-body-md">/2,500</span></span>
+<span class="text-error font-label-mono text-[10px]">112%</span>
+</div>
+<div class="h-2 bg-surface-container rounded-full overflow-hidden shadow-inner">
+<div class="h-full bg-error rounded-full shadow-[0_0_15px_rgba(255,180,171,0.6)]" style="width: 100%;"></div>
+</div>
+</div>
+<div class="pt-4 border-t border-error/20 flex justify-between items-center text-[11px] font-label-mono text-error/80">
+<span>EXCEEDED: $300.00</span>
+<button class="hover:text-error hover:underline transition-all">RESOLVE</button>
+</div>
+</div>
+<!-- Shopping Card -->
+<div class="glass-card p-6 rounded-2xl space-y-6 hover:border-chart-info/40 transition-colors group">
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-surface-container flex items-center justify-center text-chart-info">
+<span class="material-symbols-outlined">shopping_bag</span>
+</div>
+<span class="font-headline-lg text-[20px]">Shopping</span>
+</div>
+<span class="font-label-mono text-label-mono opacity-40">Weekly</span>
+</div>
+<div class="space-y-4">
+<div class="flex justify-between items-baseline">
+<span class="font-display-lg text-[28px]">$120<span class="text-sm opacity-50 font-body-md">/500</span></span>
+<span class="text-chart-info font-label-mono text-[10px]">24%</span>
+</div>
+<div class="h-2 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-chart-info rounded-full group-hover:shadow-[0_0_12px_rgba(59,130,246,0.4)] transition-all duration-500" style="width: 24%;"></div>
+</div>
+</div>
+<div class="pt-4 border-t glass-border flex justify-between items-center text-[11px] font-label-mono opacity-50">
+<span>LEFT: $380.00</span>
+<span>4 TRANSACTIONS</span>
+</div>
+</div>
+<!-- Subscription Card -->
+<div class="glass-card p-6 rounded-2xl space-y-6 hover:border-tertiary/40 transition-colors group">
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-surface-container flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined">subscriptions</span>
+</div>
+<span class="font-headline-lg text-[20px]">Subscriptions</span>
+</div>
+<span class="font-label-mono text-label-mono opacity-40">Fixed</span>
+</div>
+<div class="space-y-4">
+<div class="flex justify-between items-baseline">
+<span class="font-display-lg text-[28px]">$210<span class="text-sm opacity-50 font-body-md">/215</span></span>
+<span class="text-tertiary font-label-mono text-[10px]">98%</span>
+</div>
+<div class="h-2 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-tertiary rounded-full group-hover:shadow-[0_0_12px_rgba(190,198,224,0.4)] transition-all duration-500" style="width: 98%;"></div>
+</div>
+</div>
+<div class="pt-4 border-t glass-border flex justify-between items-center text-[11px] font-label-mono opacity-50">
+<span>LEFT: $5.00</span>
+<span>8 SERVICES</span>
+</div>
+</div>
+<!-- Utilities Card -->
+<div class="glass-card p-6 rounded-2xl space-y-6 hover:border-chart-warning/40 transition-colors group">
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-surface-container flex items-center justify-center text-chart-warning">
+<span class="material-symbols-outlined">bolt</span>
+</div>
+<span class="font-headline-lg text-[20px]">Utilities</span>
+</div>
+<span class="font-label-mono text-label-mono opacity-40">Forecasted</span>
+</div>
+<div class="space-y-4">
+<div class="flex justify-between items-baseline">
+<span class="font-display-lg text-[28px]">$450<span class="text-sm opacity-50 font-body-md">/800</span></span>
+<span class="text-chart-warning font-label-mono text-[10px]">56%</span>
+</div>
+<div class="h-2 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-chart-warning rounded-full group-hover:shadow-[0_0_12px_rgba(245,158,11,0.4)] transition-all duration-500" style="width: 56%;"></div>
+</div>
+</div>
+<div class="pt-4 border-t glass-border flex justify-between items-center text-[11px] font-label-mono opacity-50">
+<span>LEFT: $350.00</span>
+<span>PENDING: $120.00</span>
+</div>
+</div>
+<!-- Add New Category Placeholder -->
+<button class="glass-card p-6 rounded-2xl flex flex-col items-center justify-center border-dashed border-2 border-white/5 hover:border-primary/40 hover:bg-white/5 transition-all group min-h-[220px]">
+<div class="w-12 h-12 rounded-full border-2 border-white/10 flex items-center justify-center group-hover:border-primary/50 group-hover:scale-110 transition-all mb-4">
+<span class="material-symbols-outlined text-white/30 group-hover:text-primary">add</span>
+</div>
+<span class="font-label-mono text-label-mono opacity-40 group-hover:opacity-100 group-hover:text-primary">Add New Category</span>
+</button>
+</section>
+<!-- Recent Notifications -->
+<section class="glass-card rounded-2xl overflow-hidden">
+<div class="px-8 py-6 border-b glass-border flex justify-between items-center">
+<h4 class="font-headline-lg text-[20px]">Budget Intelligence</h4>
+<span class="font-label-mono text-[10px] text-primary bg-primary/10 px-2 py-1 rounded">AI POWERED</span>
+</div>
+<div class="divide-y glass-border">
+<div class="p-6 flex gap-4 hover:bg-white/5 transition-colors cursor-pointer">
+<div class="w-12 h-12 rounded-full bg-chart-warning/10 flex items-center justify-center text-chart-warning shrink-0">
+<span class="material-symbols-outlined">trending_up</span>
+</div>
+<div>
+<p class="font-semibold text-on-surface">Spike detected in 'Travel'</p>
+<p class="text-sm text-on-surface-variant mt-1">Your travel expenses are 15% higher than last month. Consider reviewing your upcoming bookings.</p>
+<p class="text-[10px] font-label-mono opacity-30 mt-2 uppercase">2 hours ago</p>
+</div>
+</div>
+<div class="p-6 flex gap-4 hover:bg-white/5 transition-colors cursor-pointer">
+<div class="w-12 h-12 rounded-full bg-chart-success/10 flex items-center justify-center text-chart-success shrink-0">
+<span class="material-symbols-outlined">check_circle</span>
+</div>
+<div>
+<p class="font-semibold text-on-surface">Saving Goal Reached</p>
+<p class="text-sm text-on-surface-variant mt-1">Great job! You've successfully stayed under budget in 'Food' for 4 consecutive weeks.</p>
+<p class="text-[10px] font-label-mono opacity-30 mt-2 uppercase">Yesterday</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer Shell -->
+<footer class="w-full mt-auto px-gutter max-w-[1200px] mx-auto flex flex-col md:flex-row justify-between items-center pb-12 glass-border border-t pt-8">
+<div class="space-y-1">
+<h5 class="font-headline-lg text-[18px] text-primary">Voxel Finance</h5>
+<p class="text-on-surface-variant text-[12px]">© 2024 Voxel Finance. Precision Engineered.</p>
+</div>
+<div class="flex gap-8 mt-6 md:mt-0">
+<a class="text-on-surface-variant hover:text-emerald-glow transition-colors font-body-md text-body-md" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant hover:text-emerald-glow transition-colors font-body-md text-body-md" href="#">Terms of Service</a>
+<a class="text-on-surface-variant hover:text-emerald-glow transition-colors font-body-md text-body-md" href="#">Security</a>
+<a class="text-on-surface-variant hover:text-emerald-glow transition-colors font-body-md text-body-md" href="#">API Documentation</a>
+</div>
+</footer>
+</div>
+</main>
+<script>
+        // Micro-interaction: Mouse tracking glow for glass cards
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+                
+                // Add a dynamic highlight effect
+                card.style.background = `radial-gradient(600px circle at ${x}px ${y}px, rgba(255,255,255,0.03), transparent 40%), rgba(26, 33, 29, 0.4)`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.background = `rgba(26, 33, 29, 0.4)`;
+            });
+        });
+
+        // Simple smooth number increment (visual flair)
+        function animateValue(obj, start, end, duration) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                obj.innerHTML = '$' + Math.floor(progress * (end - start) + start).toLocaleString();
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        // Initialize animations on load
+        window.addEventListener('DOMContentLoaded', () => {
+            const balanceEl = document.querySelector('.font-display-lg');
+            if (balanceEl) animateValue(balanceEl, 0, 4280.50, 1500);
+        });
+    </script>
+</body></html>
