@@ -1,4 +1,5 @@
-import React, { createContext, useState, useEffect } from 'react';
+/* eslint-disable react-refresh/only-export-components */
+import { createContext, useState, useEffect } from 'react';
 
 export const FinanceContext = createContext();
 
@@ -186,7 +187,7 @@ export const FinanceProvider = ({ children }) => {
     });
 
     setTimeout(() => {
-      let aiText = '';
+      let aiText;
       const prompt = text.toLowerCase();
 
       if (prompt.includes('balance') || prompt.includes('net worth') || prompt.includes('portfolio') || prompt.includes('wealth') || prompt.includes('rupee') || prompt.includes('money')) {

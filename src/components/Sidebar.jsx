@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { FinanceContext } from '../context/FinanceContext';
 
 const Sidebar = ({ activeTab, setActiveTab }) => {

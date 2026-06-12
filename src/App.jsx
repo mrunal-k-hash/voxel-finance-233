@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { FinanceContext } from './context/FinanceContext';
 import BackgroundShader from './components/BackgroundShader';
 import Header from './components/Header';
@@ -16,10 +16,12 @@ const App = () => {
   const [activeTab, setActiveTab] = useState(user ? 'analytics' : 'landing');
 
   // If user logs out, redirect to landing
-  React.useEffect(() => {
+  useEffect(() => {
     if (!user && activeTab !== 'landing' && activeTab !== 'auth') {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setActiveTab('landing');
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
   const renderPage = () => {
