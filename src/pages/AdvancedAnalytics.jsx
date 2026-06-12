@@ -165,9 +165,9 @@ const AdvancedAnalytics = () => {
               <p className="font-chart-value text-2xl text-primary mt-1 font-bold">{formatMoney(dailyData.avg)} <span className="text-xs text-on-surface-variant ml-1 font-normal">avg / day</span></p>
             </div>
           </div>
-          <div className="h-[250px] w-full">
+          <div style={{ width: '100%', height: 250 }}>
             {dailyData.data.length > 0 ? (
-              <ResponsiveContainer width="100%" height="100%">
+              <ResponsiveContainer width="100%" height={250}>
                 <LineChart data={dailyData.data}>
                   <CartesianGrid strokeDasharray="3 3" stroke="rgba(0,0,0,0.05)" vertical={false} />
                   <XAxis dataKey="date" stroke="#94a3b8" fontSize={10} tickMargin={10} tickFormatter={(val) => val.substring(5)} />
@@ -185,9 +185,9 @@ const AdvancedAnalytics = () => {
         {/* Category Breakdown (Pie Chart) */}
         <div className="glass-panel p-6 rounded-2xl flex flex-col">
           <h3 className="font-label-mono text-[10px] text-on-surface-variant uppercase tracking-widest mb-2">Category Dispersion</h3>
-          <div className="flex-1 min-h-[250px]">
+          <div style={{ width: '100%', height: 250 }} className="flex-1">
             {categoryData.length > 0 ? (
-              <ResponsiveContainer width="100%" height="100%">
+              <ResponsiveContainer width="100%" height={250}>
                 <PieChart>
                   <Pie data={categoryData} cx="50%" cy="50%" innerRadius={60} outerRadius={80} paddingAngle={5} dataKey="value" stroke="none">
                     {categoryData.map((entry, index) => (
@@ -207,9 +207,9 @@ const AdvancedAnalytics = () => {
         {/* Monthly Aggregation (Bar Chart) */}
         <div className="glass-panel p-6 rounded-2xl lg:col-span-2">
           <h3 className="font-label-mono text-[10px] text-on-surface-variant uppercase tracking-widest mb-6">Macro Monthly Overview</h3>
-          <div className="h-[300px] w-full">
+          <div style={{ width: '100%', height: 300 }}>
             {monthlyData.length > 0 ? (
-              <ResponsiveContainer width="100%" height="100%">
+              <ResponsiveContainer width="100%" height={300}>
                 <BarChart data={monthlyData}>
                   <CartesianGrid strokeDasharray="3 3" stroke="rgba(0,0,0,0.05)" vertical={false} />
                   <XAxis dataKey="month" stroke="#94a3b8" fontSize={10} tickMargin={10} />
