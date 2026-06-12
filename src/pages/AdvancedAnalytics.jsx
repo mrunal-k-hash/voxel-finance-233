@@ -1,6 +1,19 @@
-import React, { useContext, useState, useMemo } from 'react';
+import { useContext, useState, useMemo } from 'react';
 import { FinanceContext } from '../context/FinanceContext';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, ResponsiveContainer, BarChart, Bar, PieChart, Pie, Cell, Legend } from 'recharts';
+
+const CustomTooltip = ({ active, payload, label }) => {
+  const { formatMoney } = useContext(FinanceContext);
+  if (active && payload && payload.length) {
+    return (
+      <div className="glass-panel p-3 rounded-lg border border-glass-border shadow-lg !backdrop-blur-xl">
+        <p className="font-label-mono text-[10px] text-on-surface-variant mb-1">{label}</p>
+        <p className="font-chart-value text-sm font-bold text-primary">{formatMoney(payload[0].value)}</p>
+      </div>
+    );
+  }
+  return null;
+};
 
 const AdvancedAnalytics = () => {
   const { transactions, formatMoney, getCurrencySymbol } = useContext(FinanceContext);
@@ -31,12 +44,14 @@ const AdvancedAnalytics = () => {
     let maxDay = { date: '-', amount: 0 };
     let minDay = { date: '-', amount: Infinity };
     
-    const data = sortedDates.map(date => {
+    const data = [];
+    for (let i = 0; i < sortedDates.length; i++) {
+      const date = sortedDates[i];
       const amt = groups[date];
       if (amt > maxDay.amount) maxDay = { date, amount: amt };
       if (amt < minDay.amount) minDay = { date, amount: amt };
-      return { date, amount: amt };
-    });
+      data.push({ date, amount: amt });
+    }
 
     if (minDay.amount === Infinity) minDay.amount = 0;
     
@@ -107,18 +122,6 @@ const AdvancedAnalytics = () => {
     link.href = URL.createObjectURL(blob);
     link.download = `voxel_report_${dateFilter}.csv`;
     link.click();
-  };
-
-  const CustomTooltip = ({ active, payload, label }) => {
-    if (active && payload && payload.length) {
-      return (
-        <div className="glass-panel p-3 rounded-lg border border-glass-border shadow-lg !backdrop-blur-xl">
-          <p className="font-label-mono text-[10px] text-on-surface-variant mb-1">{label}</p>
-          <p className="font-chart-value text-sm font-bold text-primary">{formatMoney(payload[0].value)}</p>
-        </div>
-      );
-    }
-    return null;
   };
 
   return (
